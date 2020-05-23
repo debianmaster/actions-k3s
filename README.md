@@ -1,4 +1,4 @@
-# Hello world JavaScript action
+# K3s Github Action
 
 This github action starts a k3s cluster of choosen version and sets KUBECONFIG to created cluster.
 This is helpful for testing applications /  operators on top of kubernetes cluster
