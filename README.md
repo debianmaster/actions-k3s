@@ -4,7 +4,8 @@ This github action starts a k3s cluster of choosen version and sets KUBECONFIG t
 This is helpful for testing applications /  operators on top of kubernetes cluster
 
 ## Inputs
-version   > refer to table below
+version of k3s  
+> refer to table at the end of this README
 
 ## Outputs
 * KUBECONFIG environment variable set to k3s cluster created as part of action.
