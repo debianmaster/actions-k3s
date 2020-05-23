@@ -1,0 +1,27 @@
+{
+  "name": "actions-k3s",
+  "version": "1.0.0",
+  "description": "This github action starts a k3s cluster of choosen version and sets KUBECONFIG to created cluster",
+  "main": "index.js",
+  "scripts": {
+    "build": "ncc build index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/debianmaster/actions-k3s.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/debianmaster/actions-k3s/issues"
+  },
+  "homepage": "https://github.com/debianmaster/actions-k3s#readme",
+  "dependencies": {
+    "@actions/core": "^1.1.0",
+    "@actions/exec": "^1.0.4",
+    "@actions/github": "^1.1.0",
+    "execa": "^4.0.2"
+  }
+}
