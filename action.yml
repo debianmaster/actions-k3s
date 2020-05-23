@@ -1,4 +1,4 @@
-name: 'action-k3s'
+name: 'actions-k3s'
 description: 'Start k3s cluster and run kubectl commands'
 inputs:
   version:  
