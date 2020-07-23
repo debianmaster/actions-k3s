@@ -12,7 +12,7 @@ version of k3s
 * kubeconfig: Kubeconfig location 
 ## Example usage
 ```yaml
-- uses: debianmaster/action-k3s@master
+- uses: debianmaster/actions-k3s@master
   id: k3s
   with:
     version: 'v0.9.1'
@@ -29,7 +29,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: debianmaster/action-k3s@master
+    - uses: debianmaster/actions-k3s@master
       id: k3s
       with:
         version: 'v0.9.1'
@@ -47,7 +47,7 @@ jobs:
       matrix:
         k8s_version: [v0.8.1,v0.9.0,v1.16.9-k3s1,v1.17.4-k3s1,v1.18.2-k3s1]
     steps:
-    - uses: debianmaster/action-k3s@master
+    - uses: debianmaster/actions-k3s@master
       id: k3s
       with:
         version: ${{ matrix.k8s_version }}
