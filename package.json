@@ -22,6 +22,6 @@
     "@actions/core": "^1.2.6",
     "@actions/exec": "^1.0.4",
     "@actions/github": "^1.1.0",
-    "execa": "^4.0.2"
+    "execa": "^4.1.0"
   }
 }
