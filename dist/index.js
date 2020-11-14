@@ -1256,7 +1256,7 @@ const wait = __webpack_require__(470);
 async function run() {
   try {
     const version = core.getInput('version');
-    const kubeconfig_location="/tmp/output/kubeconfig-"+version+".yaml";
+    const kubeconfig_location="/tmp/output/config";
     console.log(`storing kubeconfig here ${kubeconfig_location}!`); 
     await exec.exec('docker', ["run","-d","--privileged","--name=k3s-"+version,
     "-e","K3S_KUBECONFIG_OUTPUT="+kubeconfig_location,
