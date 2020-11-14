@@ -1258,7 +1258,7 @@ async function run() {
     const version = core.getInput('version');
     const kubeconfig_location="/tmp/output/kubeconfig-"+version+".yaml";
     console.log(`storing kubeconfig here ${kubeconfig_location}!`); 
-      
+    await exec.exec('pwd',[]);  
     await exec.exec('docker', ["run","-d","--privileged","--name=k3s-"+version,
     "-e","K3S_KUBECONFIG_OUTPUT="+kubeconfig_location,
     "-e","K3S_KUBECONFIG_MODE=666",
