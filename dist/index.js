@@ -1266,7 +1266,7 @@ async function run() {
     "rancher/k3s:"+version,"server"]);
     await wait(parseInt(10000));
     
-    //core.setOutput("kubeconfig", kubeconfig_location);
+    core.setOutput("kubeconfig", kubeconfig_location);
     //core.exportVariable('KUBECONFIG', kubeconfig_location);
 
   } catch (error) {
