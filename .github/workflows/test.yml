@@ -7,10 +7,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - run: |
-        pwd
-        cd ~/
-        pwd
     - uses: debianmaster/actions-k3s@fix/depricated-set-env
       id: k3s
       with:
