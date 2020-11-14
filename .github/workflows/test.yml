@@ -12,6 +12,5 @@ jobs:
       with:
         version: 'v0.9.1'
     - run: |
-        ls -lrt ~/.kube
-        cat ~/.kube/config
         kubectl get nodes
+
