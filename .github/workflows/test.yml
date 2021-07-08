@@ -9,11 +9,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: debianmaster/actions-k3s@v1.0.1
+    - uses: debianmaster/actions-k3s@latest
       id: k3s
       with:
         version: 'latest'
     - run: |
-        docker ps -a
         kubectl get nodes
+        kubectl run --image=debianmaster/nodejs-welcome welcome
 
