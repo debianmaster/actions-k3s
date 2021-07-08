@@ -9,12 +9,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: debianmaster/actions-k3s@master
+    - uses: debianmaster/actions-k3s@fix/broken1
       id: k3s
       with:
         version: 'v1.21.2-k3s1'
     - run: |
-        docker logs -f k3s-v1.21.2-k3s1
+        kubectl wait --for=delete pod/busybox1 --timeout=60s
         kubectl get nodes
         
         echo $KUBECONFIG
