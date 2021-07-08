@@ -12,7 +12,7 @@ jobs:
     - uses: debianmaster/actions-k3s@fix/july-broken-k3s
       id: k3s
       with:
-        version: 'v0.9.1'
+        version: 'latest'
     - run: |
         kubectl get nodes
 
