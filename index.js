@@ -15,10 +15,10 @@ async function run() {
     "rancher/k3s:"+version,"server"]);
     core.exportVariable('KUBECONFIG', kubeconfig_location);
     core.setOutput("kubeconfig", kubeconfig_location);
-
+    await wait(parseInt(10000));
     output=await exec.exec('kubectl', ["get","nodes"]);
     console.log(output);
-    await wait(parseInt(10000));        
+            
 
   } catch (error) {
     core.setFailed(error.message);
