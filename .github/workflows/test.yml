@@ -16,6 +16,7 @@ jobs:
     - run: |
         docker ps -a
         sleep 3
+        docker logs -f k3s-v0.9.1
         cat /tmp/output/kubeconfig-v0.9.1.yaml
         kubectl get nodes
 
