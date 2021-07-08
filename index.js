@@ -14,11 +14,13 @@ async function run() {
     "-v","/tmp/output:/tmp/output","-p","6443:6443",
     "rancher/k3s:"+version,"server"]);
 
+    core.setOutput("kubeconfig", kubeconfig_location);
+    
     output=await exec.exec('kubectl', ["get","nodes"]);
     console.log(output);
     await wait(parseInt(10000));
     
-    core.setOutput("kubeconfig", kubeconfig_location);
+    
     core.exportVariable('KUBECONFIG', kubeconfig_location);
 
   } catch (error) {
