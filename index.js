@@ -16,9 +16,8 @@ async function run() {
     await wait(parseInt(10000));
     core.exportVariable('KUBECONFIG', kubeconfig_location);
     core.setOutput("kubeconfig", kubeconfig_location);   
-    const nodeName=await exec.getExecOutput("kubectl get nodes --no-headers -oname");
-    console.log(nodeName); 
-    var command="kubectl wait --for=condition=Ready "+nodeName;
+    const nodeName=await exec.getExecOutput("kubectl get nodes --no-headers -oname");    
+    var command="kubectl wait --for=condition=Ready "+nodeName.stdout;
     await exec.exec(command);            
   } catch (error) {
     core.setFailed(error.message);
