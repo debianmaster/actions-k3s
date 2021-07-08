@@ -14,8 +14,10 @@ async function run() {
     "-v","/tmp/output:/tmp/output","-p","6443:6443",
     "rancher/k3s:"+version,"server"]);
     core.exportVariable('KUBECONFIG', kubeconfig_location);
-    core.setOutput("kubeconfig", kubeconfig_location);    
-    await exec.exec("kubectl wait --for=condition=Ready  $(kubectl get nodes --no-headers -oname)");            
+    core.setOutput("kubeconfig", kubeconfig_location);   
+    const nodeName=await exec.getExecOutput("kubectl get nodes --no-headers -oname"); 
+    var command="kubectl wait --for=condition=Ready "+nodeName;
+    await exec.exec(command);            
   } catch (error) {
     core.setFailed(error.message);
   }
