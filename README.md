@@ -15,7 +15,7 @@ version of k3s
 - uses: debianmaster/actions-k3s@master
   id: k3s
   with:
-    version: 'v0.9.1'
+    version: 'latest'
 - run: |
     kubectl get nodes
     kubectl get pods -A
@@ -32,7 +32,7 @@ jobs:
     - uses: debianmaster/actions-k3s@master
       id: k3s
       with:
-        version: 'v0.9.1'
+        version: 'v1.21.2-k3s1'
     - run: |
         kubectl get nodes
 ```
@@ -45,7 +45,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        k8s_version: [v0.8.1,v0.9.0,v1.16.9-k3s1,v1.17.4-k3s1,v1.18.2-k3s1]
+        k8s_version: [latest,v1.21.2-k3s1,v1.20.8-k3s1,v1.19.12-k3s1]
     steps:
     - uses: debianmaster/actions-k3s@master
       id: k3s
@@ -59,6 +59,9 @@ jobs:
 ## k3s version mapping with k8s
 | k3s                       | k8s      |
 |---------------------------|----------|
+| v1.21.2-k3s1              | v1.21.2  |
+| v1.20.8-k3s1              | v1.20.8  |
+| v1.19.12-k3s1             | v1.19.1  |
 | v1.18.2-k3s1              | v1.18.2  |
 | v1.17.4-k3s1              | v1.17.4  |
 | v1.17.3-k3s1              | v1.17.3  |
