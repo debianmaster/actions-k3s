@@ -1889,7 +1889,8 @@ async function run() {
     "rancher/k3s:"+version,"server"]);
     core.exportVariable('KUBECONFIG', kubeconfig_location);
     core.setOutput("kubeconfig", kubeconfig_location);    
-    await exec.exec('sh','./check-if-cluster-ready.sh');            
+    await exec.exec("ls");
+    await exec.exec('./check-if-cluster-ready.sh');            
   } catch (error) {
     core.setFailed(error.message);
   }
