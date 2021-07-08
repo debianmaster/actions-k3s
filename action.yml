@@ -8,6 +8,9 @@ inputs:
 outputs:
   kubeconfig: # id of output
     description: 'Kubeconfig location'
+branding:
+  icon: "box"
+  color: "green"
 runs:
   using: 'node12'
   main: 'dist/index.js'
