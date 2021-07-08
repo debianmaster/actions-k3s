@@ -15,5 +15,8 @@ jobs:
         version: 'v1.21.2-k3s1'
     - run: |
         kubectl get nodes
+        echo $KUBECONFIG
+        cat $KUBECONFIG
+        kubectl get po -A
         kubectl run --image=debianmaster/nodejs-welcome welcome
 
