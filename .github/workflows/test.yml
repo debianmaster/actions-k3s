@@ -12,7 +12,7 @@ jobs:
     - uses: debianmaster/actions-k3s@master
       id: k3s
       with:
-        version: 'latest'
+        version: 'v1.18.2-k3s1'
     - run: |
         kubectl get nodes
         kubectl run --image=debianmaster/nodejs-welcome welcome
