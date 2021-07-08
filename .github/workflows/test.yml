@@ -14,6 +14,8 @@ jobs:
       with:
         version: 'v0.9.1'
     - run: |
-        sleep 5
+        docker ps -a
+        sleep 3
+        cat /tmp/output/kubeconfig-v0.9.1.yaml
         kubectl get nodes
 
