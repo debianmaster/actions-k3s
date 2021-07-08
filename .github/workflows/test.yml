@@ -12,11 +12,11 @@ jobs:
     - uses: debianmaster/actions-k3s@v1.0.1
       id: k3s
       with:
-        version: 'v1.21.2'
+        version: 'latest'
     - run: |
         docker ps -a
         sleep 3
-        docker logs -f v1.21.2
-        cat /tmp/output/kubeconfig-v1.21.2.yaml
+        docker logs -f latest
+        cat /tmp/output/kubeconfig-latest.yaml
         kubectl get nodes
 
