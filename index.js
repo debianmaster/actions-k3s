@@ -15,9 +15,7 @@ async function run() {
     "rancher/k3s:"+version,"server"]);
     core.exportVariable('KUBECONFIG', kubeconfig_location);
     core.setOutput("kubeconfig", kubeconfig_location);    
-    await exec.exec("pwd");
-    await exec.exec("ls",["-lrt"]);
-    await exec.exec('./check-if-cluster-ready.sh');            
+    await exec.exec("kubectl wait --for=condition=Ready  $(kubectl get nodes --no-headers -oname)");            
   } catch (error) {
     core.setFailed(error.message);
   }
