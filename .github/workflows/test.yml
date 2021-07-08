@@ -15,8 +15,5 @@ jobs:
         version: 'latest'
     - run: |
         docker ps -a
-        sleep 3
-        docker logs -f latest
-        cat /tmp/output/kubeconfig-latest.yaml
         kubectl get nodes
 
