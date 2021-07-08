@@ -13,15 +13,12 @@ async function run() {
     "-e","K3S_KUBECONFIG_MODE=666",
     "-v","/tmp/output:/tmp/output","-p","6443:6443",
     "rancher/k3s:"+version,"server"]);
-
+    core.exportVariable('KUBECONFIG', kubeconfig_location);
     core.setOutput("kubeconfig", kubeconfig_location);
-    
+
     output=await exec.exec('kubectl', ["get","nodes"]);
     console.log(output);
-    await wait(parseInt(10000));
-    
-    
-    core.exportVariable('KUBECONFIG', kubeconfig_location);
+    await wait(parseInt(10000));        
 
   } catch (error) {
     core.setFailed(error.message);
