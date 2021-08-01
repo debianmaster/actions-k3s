@@ -21,5 +21,6 @@ jobs:
         ls -lrt /tmp/images
         echo "test"        
         kubectl run --image=test1234 test1234
+        sleep 10
         kubectl describe po test1234
 
