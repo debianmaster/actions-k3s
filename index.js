@@ -24,7 +24,7 @@ async function run() {
     const nodeName=await exec.getExecOutput("kubectl get nodes --no-headers -oname");    
     var command="kubectl wait --for=condition=Ready "+nodeName.stdout;
     await exec.exec(command);
-    var command="timeout 2m bash -c 'until kubectl get serviceaccount default; do sleep 1; done'";
+    var command="until kubectl get serviceaccount default; do sleep 1; done";
     await exec.exec(command);  
 
   } catch (error) {
