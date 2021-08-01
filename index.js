@@ -1,6 +1,7 @@
 const core = require('@actions/core');
 const exec = require('@actions/exec');
 const wait = require('./wait');
+const fs = require("fs");
 
 async function run() {
   try {
@@ -24,7 +25,9 @@ async function run() {
     const nodeName=await exec.getExecOutput("kubectl get nodes --no-headers -oname");    
     var command="kubectl wait --for=condition=Ready "+nodeName.stdout;
     await exec.exec(command);
-    var command="/usr/bin/until kubectl get serviceaccount default; do sleep 1; done";
+    var healthCheck="n=0; until ((n >= 60)); do kubectl -n default get serviceaccount default -o name && break; n=$((n + 1)); sleep 1; done; ((n < 60))";
+    fs.writeFileSync("./is-cluster-ready.sh", healthCheck);
+    var command="./is-cluster-ready.sh";
     await exec.exec(command);  
 
   } catch (error) {
