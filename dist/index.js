@@ -1892,7 +1892,8 @@ async function run() {
     "-p","443:443","-p","8080:8080",
     "rancher/k3s:"+version,"server"]);
 
-
+    await exec.exec("until [ -f /tmp/output/kubeconfig-latest.yaml ]");  
+    
     core.exportVariable('KUBECONFIG', kubeconfig_location);
     core.setOutput("kubeconfig", kubeconfig_location);   
     const nodeName=await exec.getExecOutput("kubectl get nodes --no-headers -oname");    
