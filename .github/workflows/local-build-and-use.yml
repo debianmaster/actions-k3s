@@ -19,7 +19,7 @@ jobs:
         version: 'latest'
     - run: |
         sleep 4
-        docker imags
+        docker images
         kubectl run --image=test test
         sleep 10
         kubectl describe po test
