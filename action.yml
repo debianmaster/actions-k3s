@@ -4,7 +4,7 @@ inputs:
   version:  
     description: 'Version of k3s'
     required: true
-    default: 'v1.0.0'
+    default: 'v1.0.3'
 outputs:
   kubeconfig: # id of output
     description: 'Kubeconfig location'
