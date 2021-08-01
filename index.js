@@ -26,7 +26,7 @@ async function run() {
     await exec.exec(command);
 
 
-    var healthCheck="timeout 2m bash -c \'until kubectl get serviceaccount default; do sleep 1; done\'";
+    var healthCheck="until kubectl get serviceaccount default; do sleep 1; done";
     fs.writeFileSync("./is-cluster-ready.sh", healthCheck);
     fs.chmodSync("./is-cluster-ready.sh", "755");
     var command="./is-cluster-ready.sh";
