@@ -1,0 +1,17 @@
+name: k3s Testing
+on:
+  push:
+    branches:
+      - 'feature/**'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: debianmaster/actions-k3s@v1.0.3
+      id: k3s
+      with:
+        version: 'latest'
+    - run: |
+        docker build -t test -f tests/
+        kubectl run --image=test test
+
