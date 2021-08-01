@@ -11,7 +11,7 @@ jobs:
     - run: |
         pwd
         ls -lrt
-        docker build -f tests/Dockerfile -t test  .
+        docker build -f tests/Dockerfile -t test1234  .
         docker images
     - uses: debianmaster/actions-k3s@v1.0.3
       id: k3s
@@ -20,7 +20,7 @@ jobs:
     - run: |
         sleep 4
         docker images
-        kubectl run --image=test test
+        kubectl run --image=test1234 test
         sleep 10
         kubectl describe po test
 
