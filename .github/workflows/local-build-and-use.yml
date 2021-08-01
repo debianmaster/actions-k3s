@@ -16,6 +16,7 @@ jobs:
         docker inspect k3s-latest
         docker build -f tests/Dockerfile -t test1234:latest  .
         ls -lrt /tmp/
+        docker exec -it k3s-latest ls -lrt /var/lib/rancher/k3s/agent/images
         docker save --output /tmp/images/test1234.tar test1234:latest
         ls -lrt /tmp/images
         docker exec -it k3s-latest ls -lrt /var/lib/rancher/k3s/agent/images   

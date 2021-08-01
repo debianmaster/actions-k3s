@@ -27,7 +27,7 @@ async function run() {
     var command="kubectl wait --for=condition=Ready "+nodeName.stdout;
     await exec.exec(command);
     var command="./tests/probe-cluster.sh";
-    await exec.exec(command);            
+    await exec.exec(command);           
   } catch (error) {
     core.setFailed(error.message);
   }
