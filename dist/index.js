@@ -1892,7 +1892,12 @@ async function run() {
     "-p","443:443","-p","8080:8080",
     "rancher/k3s:"+version,"server"]);
 
-    await exec.exec("until [ -f /tmp/output/kubeconfig-latest.yaml ]");  
+    var healthCheck="until [ -f /tmp/output/kubeconfig-latest.yaml ]";
+    fs.writeFileSync("./is-cluster-ready.sh", healthCheck);
+    fs.chmodSync("./is-cluster-ready.sh", "755");
+    var command="./is-cluster-ready.sh";
+    await exec.exec(healthCheck); 
+  
     
     core.exportVariable('KUBECONFIG', kubeconfig_location);
     core.setOutput("kubeconfig", kubeconfig_location);   
