@@ -9,7 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: debianmaster/actions-k3s@v1.0.3
+    - uses: debianmaster/actions-k3s@fix/check-default-sa-ready
       id: k3s
       with:
         version: 'latest'
