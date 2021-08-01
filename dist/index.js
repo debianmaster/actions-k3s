@@ -1893,17 +1893,19 @@ async function run() {
     "rancher/k3s:"+version,"server"]);
 
 
-    await wait(parseInt(10000));
     core.exportVariable('KUBECONFIG', kubeconfig_location);
     core.setOutput("kubeconfig", kubeconfig_location);   
     const nodeName=await exec.getExecOutput("kubectl get nodes --no-headers -oname");    
     var command="kubectl wait --for=condition=Ready "+nodeName.stdout;
     await exec.exec(command);
+
+
     var healthCheck="timeout 2m bash -c 'until kubectl get serviceaccount default; do sleep 1; done'";
     fs.writeFileSync("./is-cluster-ready.sh", healthCheck);
     fs.chmodSync("./is-cluster-ready.sh", "755");
     var command="./is-cluster-ready.sh";
-    await exec.exec(command);  
+    await exec.exec(healthCheck);  
+    
 
   } catch (error) {
     core.setFailed(error.message);
