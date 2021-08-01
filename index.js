@@ -24,12 +24,8 @@ async function run() {
     const nodeName=await exec.getExecOutput("kubectl get nodes --no-headers -oname");    
     var command="kubectl wait --for=condition=Ready "+nodeName.stdout;
     await exec.exec(command);
-    var command="pwd";
-    await exec.exec(command);
-    var command="ls";
-    await exec.exec(command);
-    var command="./tests/is-cluster-ready.sh";
-    await exec.exec(command);   
+    var command="timeout 2m bash -c 'until kubectl get serviceaccount default; do sleep 1; done'";
+    await exec.exec(command);  
 
   } catch (error) {
     core.setFailed(error.message);
