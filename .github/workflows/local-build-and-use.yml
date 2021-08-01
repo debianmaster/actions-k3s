@@ -8,16 +8,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - run: |       
+        docker build -f tests/Dockerfile -t test1234:latest  .
+        ls -lrt /tmp/
+        docker exec k3s-latest ls -lrt /var/lib/rancher/k3s/agent/images
+        docker save --output /tmp/images/test1234.tar test1234:latest    
     - uses: debianmaster/actions-k3s@feature/local-build-and-use
       id: k3s
       with:
         version: 'latest'
     - run: |       
-        docker build -f tests/Dockerfile -t test1234:latest  .
-        ls -lrt /tmp/
-        docker exec k3s-latest ls -lrt /var/lib/rancher/k3s/agent/images
-        docker save --output /tmp/images/test1234.tar test1234:latest
-        ls -lrt /tmp/images
         docker exec k3s-latest ls -lrt /var/lib/rancher/k3s/agent/images   
         kubectl run --image=test1234:latest test1234
         sleep 10
