@@ -12,6 +12,8 @@ jobs:
       with:
         version: 'latest'
     - run: |
-        docker build -f tests/Dockerfile -t test  .
+        pwd
+        ls
+        docker build -f .github/tests/Dockerfile -t test  .
         kubectl run --image=test test
 
