@@ -14,9 +14,11 @@ jobs:
         version: 'latest'
     - run: |
         sleep 10
-        docker build -f tests/Dockerfile -t test1234  .
         docker images
-        kubectl run --image=test1234 test
+        docker build -f tests/Dockerfile -t test1234  .
+        docker save --output test1234.tar test1234
+        docker cp test1234.tar server:/var/lib/rancher/k3s/agent/images/
+        kubectl run --image=test1234 test1234
         sleep 10
-        kubectl describe po test
+        kubectl describe po test1234
 
