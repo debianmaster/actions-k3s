@@ -25,6 +25,8 @@ async function run() {
     core.setOutput("kubeconfig", kubeconfig_location);   
     const nodeName=await exec.getExecOutput("kubectl get nodes --no-headers -oname");    
     var command="kubectl wait --for=condition=Ready "+nodeName.stdout;
+    await exec.exec(command);
+    var command="n=0; until ((n >= 60)); do kubectl -n default get serviceaccount default -o name && break; n=$((n + 1)); sleep 1; done; ((n < 60))";
     await exec.exec(command);            
   } catch (error) {
     core.setFailed(error.message);
