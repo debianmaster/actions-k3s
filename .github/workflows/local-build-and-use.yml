@@ -12,14 +12,13 @@ jobs:
       id: k3s
       with:
         version: 'latest'
-    - run: |
-        docker inspect k3s-latest
+    - run: |       
         docker build -f tests/Dockerfile -t test1234:latest  .
         ls -lrt /tmp/
-        docker exec -it k3s-latest ls -lrt /var/lib/rancher/k3s/agent/images
+        docker exec k3s-latest ls -lrt /var/lib/rancher/k3s/agent/images
         docker save --output /tmp/images/test1234.tar test1234:latest
         ls -lrt /tmp/images
-        docker exec -it k3s-latest ls -lrt /var/lib/rancher/k3s/agent/images   
+        docker exec k3s-latest ls -lrt /var/lib/rancher/k3s/agent/images   
         kubectl run --image=test1234:latest test1234
         sleep 10
         kubectl describe po test1234
