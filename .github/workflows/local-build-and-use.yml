@@ -8,17 +8,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - run: |
-        pwd
-        ls -lrt
-        docker build -f tests/Dockerfile -t test1234  .
-        docker images
     - uses: debianmaster/actions-k3s@v1.0.3
       id: k3s
       with:
         version: 'latest'
     - run: |
         sleep 4
+        docker build -f tests/Dockerfile -t test1234  .
         docker images
         kubectl run --image=test1234 test
         sleep 10
