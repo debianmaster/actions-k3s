@@ -1901,6 +1901,7 @@ async function run() {
     await exec.exec(command);
     var healthCheck="n=0; until ((n >= 60)); do kubectl -n default get serviceaccount default -o name && break; n=$((n + 1)); sleep 1; done; ((n < 60))";
     fs.writeFileSync("./is-cluster-ready.sh", healthCheck);
+    fs.chmodSync("./is-cluster-ready.sh", "755");
     var command="./is-cluster-ready.sh";
     await exec.exec(command);  
 
