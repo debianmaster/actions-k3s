@@ -1885,9 +1885,14 @@ async function run() {
     await exec.exec('docker', ["run","-d","--privileged","--name=k3s-"+version,
     "-e","K3S_KUBECONFIG_OUTPUT="+kubeconfig_location,
     "-e","K3S_KUBECONFIG_MODE=666",
-    "-v","/tmp/output:/tmp/output","-p","6443:6443","-p","80:80","-p","443:443","-p","8080:8080",
+    "-v","/tmp/output:/tmp/output",
+    "-v","/tmp/images:/var/lib/rancher/k3s/agent/images",
+    "-p","6443:6443","-p","80:80",
+    "-p","443:443","-p","8080:8080",
     "rancher/k3s:"+version,"server"]);
-    
+
+    //await exec.exec('docker', ["exec","k3s-latest","mkdir","-p","/var/lib/rancher/k3s/agent/images"]);
+
     await wait(parseInt(10000));
     core.exportVariable('KUBECONFIG', kubeconfig_location);
     core.setOutput("kubeconfig", kubeconfig_location);   
