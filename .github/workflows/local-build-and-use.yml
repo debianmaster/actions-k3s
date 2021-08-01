@@ -18,9 +18,7 @@ jobs:
       with:
         version: 'latest'
     - run: |
-        pwd
-        ls -lrt
-        docker build -f tests/Dockerfile -t test  .
-        docker images
         kubectl run --image=test test
+        sleep 10
+        kubectl describe po test
 
