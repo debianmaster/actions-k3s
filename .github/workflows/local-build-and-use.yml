@@ -17,7 +17,7 @@ jobs:
         docker images
         docker build -f tests/Dockerfile -t test1234:latest  .
         docker save --output test1234.tar test1234:latest
-        docker cp test1234.tar server:/var/lib/rancher/k3s/agent/images/
+        docker cp test1234.tar k3s-latest:/var/lib/rancher/k3s/agent/images/
         kubectl run --image=test1234 test1234
         sleep 10
         kubectl describe po test1234
