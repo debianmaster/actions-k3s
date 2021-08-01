@@ -1898,6 +1898,10 @@ async function run() {
     const nodeName=await exec.getExecOutput("kubectl get nodes --no-headers -oname");    
     var command="kubectl wait --for=condition=Ready "+nodeName.stdout;
     await exec.exec(command);
+    var command="pwd";
+    await exec.exec(command);
+    var command="ls";
+    await exec.exec(command);
     var command="./tests/is-cluster-ready.sh";
     await exec.exec(command);   
 
