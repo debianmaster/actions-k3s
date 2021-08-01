@@ -11,13 +11,16 @@ jobs:
     - run: |
         pwd
         ls -lrt
-        docker build -f ../tests/Dockerfile -t test  .
+        docker build -f tests/Dockerfile -t test  .
         docker images
     - uses: debianmaster/actions-k3s@v1.0.3
       id: k3s
       with:
         version: 'latest'
     - run: |
+        pwd
+        ls -lrt
+        docker build -f tests/Dockerfile -t test  .
         docker images
         kubectl run --image=test test
 
