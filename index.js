@@ -9,6 +9,7 @@ async function run() {
     console.log(`storing kubeconfig here ${kubeconfig_location}!`); 
 
     await exec.exec('docker', ["run","-d","--privileged","--name=k3s-"+version,
+    "--expose=6443",
     "-e","K3S_KUBECONFIG_OUTPUT="+kubeconfig_location,
     "-e","K3S_KUBECONFIG_MODE=666",
     "-v","/tmp/output:/tmp/output","-p","6443:6443","-p","80:80","-p","443:443","-p","8080:8080",
