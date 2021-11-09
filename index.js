@@ -1,6 +1,7 @@
 const core = require('@actions/core');
 const exec = require('@actions/exec');
 const wait = require('./wait');
+const fs = require('fs');
 
 async function run() {
   try {
@@ -16,6 +17,14 @@ async function run() {
     "rancher/k3s:"+version,"server"]);
     
     await wait(parseInt(10000));
+
+    if (process.env.DOCKER_HOST) {
+      const kubeconfig = await exec.getExecOutput('docker', ["exec", `k3s-${version}`, "cat", kubeconfig_location]);
+
+      await exec.exec('mkdir', ['/tmp/output']);
+      fs.writeFileSync(kubeconfig_location, kubeconfig.stdout);
+    }
+
     core.exportVariable('KUBECONFIG', kubeconfig_location);
     core.setOutput("kubeconfig", kubeconfig_location);   
     const nodeName=await exec.getExecOutput("kubectl get nodes --no-headers -oname");    
