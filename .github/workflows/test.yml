@@ -9,7 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: debianmaster/actions-k3s@master
+    - uses: rohan397/actions-k3s@master
       id: k3s
       with:
         version: 'latest'
