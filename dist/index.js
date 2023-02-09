@@ -265,12 +265,12 @@ exports.getBooleanInput = getBooleanInput;
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function setOutput(name, value) {
-  const convertedVal = utils_1.toCommandValue(val);
+  const convertedVal = utils_1.toCommandValue(value);
   const filePath = process.env['GITHUB_OUTPUT'] || ''
 
   if (filePath) {
     const delimiter = '_GitHubActionsFileCommandDelimeter_';
-    const commandValue = `${name}<<${delimiter}${os.EOL}${value}${os.EOL}${delimiter}`;
+    const commandValue = `${name}<<${delimiter}${os.EOL}${convertedVal}${os.EOL}${delimiter}`;
     file_command_1.issueCommand('OUTPUT', commandValue);
   } 
   else {
