@@ -1,5 +1,3 @@
-const core = require('@actions/core');
-
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -267,9 +265,45 @@ exports.getBooleanInput = getBooleanInput;
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function setOutput(name, value) {
-  process.stdout.write(os.EOL);
-  core.setOutput(name, value)
-    //command_1.issueCommand('set-output', { name }, value);
+  const convertedVal = utils_1.toCommandValue(val);
+  const filePath = process.env['GITHUB_OUTPUT'] || ''
+
+  if (filePath) {
+    const delimiter = '_GitHubActionsFileCommandDelimeter_';
+    const commandValue = `${name}<<${delimiter}${os.EOL}${value}${os.EOL}${delimiter}`;
+    file_command_1.issueCommand('OUTPUT', commandValue);
+  } 
+  else {
+    process.stdout.write(os.EOL);
+    command_1.issueCommand('set-env', { name }, convertedVal);
+  }
+}
+  /*
+    const filePath = process.env['GITHUB_OUTPUT'] || ''
+  if (filePath) {
+    return issueFileCommand('OUTPUT', prepareKeyValueMessage(name, value))
+  }
+
+  process.stdout.write(os.EOL)
+  issueCommand('set-output', {name}, value)
+  issueCommand('set-output', {name}, toCommandValue(value))
+}
+
+  */
+  /*
+    const convertedVal = utils_1.toCommandValue(val);
+    process.env[name] = convertedVal;
+    const filePath = process.env['GITHUB_ENV'] || '';
+    if (filePath) {
+        const delimiter = '_GitHubActionsFileCommandDelimeter_';
+        const commandValue = `${name}<<${delimiter}${os.EOL}${convertedVal}${os.EOL}${delimiter}`;
+        file_command_1.issueCommand('ENV', commandValue);
+    }
+    else {
+        command_1.issueCommand('set-env', { name }, convertedVal);
+    }
+}
+  */
 }
 exports.setOutput = setOutput;
 /**
