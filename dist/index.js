@@ -278,33 +278,6 @@ function setOutput(name, value) {
     command_1.issueCommand('set-env', { name }, convertedVal);
   }
 }
-  /*
-    const filePath = process.env['GITHUB_OUTPUT'] || ''
-  if (filePath) {
-    return issueFileCommand('OUTPUT', prepareKeyValueMessage(name, value))
-  }
-
-  process.stdout.write(os.EOL)
-  issueCommand('set-output', {name}, value)
-  issueCommand('set-output', {name}, toCommandValue(value))
-}
-
-  */
-  /*
-    const convertedVal = utils_1.toCommandValue(val);
-    process.env[name] = convertedVal;
-    const filePath = process.env['GITHUB_ENV'] || '';
-    if (filePath) {
-        const delimiter = '_GitHubActionsFileCommandDelimeter_';
-        const commandValue = `${name}<<${delimiter}${os.EOL}${convertedVal}${os.EOL}${delimiter}`;
-        file_command_1.issueCommand('ENV', commandValue);
-    }
-    else {
-        command_1.issueCommand('set-env', { name }, convertedVal);
-    }
-}
-  */
-}
 exports.setOutput = setOutput;
 /**
  * Enables or disables the echoing of commands into stdout for the rest of the step.
