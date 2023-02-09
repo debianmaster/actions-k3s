@@ -1,3 +1,5 @@
+const core = require('@actions/core');
+
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -265,8 +267,9 @@ exports.getBooleanInput = getBooleanInput;
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function setOutput(name, value) {
-    process.stdout.write(os.EOL);
-    command_1.issueCommand('set-output', { name }, value);
+  process.stdout.write(os.EOL);
+  core.setOutput(name, value)
+    //command_1.issueCommand('set-output', { name }, value);
 }
 exports.setOutput = setOutput;
 /**
