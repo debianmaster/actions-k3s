@@ -7,7 +7,7 @@ inputs:
     default: 'v1.0.0'
 outputs:
   kubeconfig: # id of output
-    description: 'location of Kubeconfig'
+    description: 'Kubeconfig location'
 branding:
   icon: "box"
   color: "green"
